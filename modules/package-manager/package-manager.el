@@ -9,6 +9,10 @@
 
 ;;; Code:
 ;; list repos
+(message "Init package-manager.el")
+(require 'package)
+(package-initialize)
+
 (defvar package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -21,12 +25,24 @@
 
 ;; Define package-manager-install
 (defun package-manager-install ()
-  "Install packages on load.
+  "Install packages from package-manager-list.
 Uses lift of packages stored in variable package-manager-list"
   (interactive)
-  (message "asdasd"))
+  (defun package-manager-list-installed-p ()
+    "Loop through package-manager-list and look for not installed packages."
+    (loop for p in package-manager-list
+          when (not (package-installed-p p)) do (return nil)
+          finally (return t)))
 
-(message "test")
+  (unless (package-manager-list-installed-p)
+    (message "Check for new packages: init")
+    (package-refresh-contents)
+    (message "%s" "Check for new packages: done")
+    (dolist (p package-manager-list)
+      (when (not (package-installed-p p))
+        (package-install p))))
+  (message ("Packages installed"))
+  )
 
 (provide 'package-manager)
 ;;; package-manager.el ends here
