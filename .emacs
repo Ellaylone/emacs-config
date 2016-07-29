@@ -9,6 +9,12 @@
 ;; Define path to modules
 (message "Emacs init")
 
+;; Remove bell for mac
+;; removes square in the middle of screen
+(if (eq system-type 'darwin)
+    (setq ring-bell-function 'ignore)
+)
+
 ;; Variables for path to modules & elpa
 (defvar modules-path nil
   "Defines path to modules directory.")
