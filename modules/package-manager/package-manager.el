@@ -9,9 +9,10 @@
 
 ;;; Code:
 ;; list repos
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+(defvar package-archives '(("elpa" . "http://tromey.com/elpa/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+                         ("marmalade" . "http://marmalade-repo.org/packages/"))
+  "List of package archives.")
 
 
 ;; Define package-manager-list
@@ -28,4 +29,4 @@ Uses lift of packages stored in variable package-manager-list"
 (message "test")
 
 (provide 'package-manager)
-;;; package-manager ends here
+;;; package-manager.el ends here
