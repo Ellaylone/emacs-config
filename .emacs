@@ -28,8 +28,9 @@
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
-(defvar missing-packages-list
-  '())
+(defvar missing-packages-list)
+(setq missing-packages-list
+      '())
 (defun try-require (feature)
   "Attempt to load a library or module.
 Return true if the library given as argument is successfully loaded.
@@ -54,7 +55,11 @@ FEATURE - feature to require"
 (load "package-manager")
 (load "better-defaults")
 
-;; (package-manager-install)
 
+(setq package-manager-list
+      'missing-packages-list)
+
+(if missing-packages-list
+    (message "To install missing packages run package-manager-install\nMissing: %s" missing-packages-list))
 (provide 'emacs)
 ;;; .emacs ends here

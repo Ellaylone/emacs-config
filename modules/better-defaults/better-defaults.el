@@ -8,12 +8,7 @@
 ;;; Code:
 
 ;;; better defaults
-(defvar ido-enable-flex-matching nil)
-(defvar x-select-enable-cliboard nil)
-(defvar x-select-enable-primary nil)
-(defvar apropos-do-all nil)
-(defvar ediff-window-setup-function nil)
-(defvar save-place-file nil)
+(setq package-manager-list nil)
 
 (progn
   (ido-mode t)
@@ -77,9 +72,9 @@
 
 ;; Package: smartparens
 (try-require "smartparens-config")
-(defvar sp-base-key-bindings 'paredit)
-(defvar sp-autoskip-closing-pair 'always)
-(defvar sp-hybrid-kill-entire-symbol nil)
+(setq sp-base-key-bindings 'paredit)
+(setq sp-autoskip-closing-pair 'always)
+(setq sp-hybrid-kill-entire-symbol nil)
 (sp-use-paredit-bindings)
 
 (show-smartparens-global-mode +1)
@@ -89,7 +84,7 @@
 ;; Package: projejctile
 (try-require "projectile")
 (projectile-global-mode)
-(defvar projectile-enable-caching t)
+(setq projectile-enable-caching t)
 
 ;; Package zygospore
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
