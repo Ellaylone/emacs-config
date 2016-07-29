@@ -13,6 +13,7 @@
 (defvar x-select-enable-primary nil)
 (defvar apropos-do-all nil)
 (defvar ediff-window-setup-function nil)
+(defvar save-place-file nil)
 
 (progn
   (ido-mode t)
@@ -24,10 +25,10 @@
   (when (fboundp 'scroll-bar-mode)
     (scroll-bar-mode -1))
 
-  (require 'uniquify)
+  (try-require "uniquify")
   (setq uniquify-buffer-name-style 'forward)
 
-  (require 'saveplace)
+  (try-require"saveplace")
   (setq-default save-place t)
 
   (show-paren-mode 1)
@@ -48,14 +49,14 @@
 ;;; better defaults
 
 ;; ace-window on M-p
-(require 'ace-window)
+(try-require "ace-window")
 (global-set-key (kbd "M-p") 'ace-window)
 
 ;; globally enable linum-mode
 (global-linum-mode t)
 
 ;; global yasnippet
-(require 'yasnippet)
+(try-require "yasnippet")
 (yas-global-mode 1)
 
 ;; keybind for whitespace-mode
@@ -71,14 +72,14 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; Package: ws-butler
-(require 'ws-butler)
+(try-require "ws-butler")
 (add-hook 'prog-mode-hook 'ws-butler-mode)
 
 ;; Package: smartparens
-(require 'smartparens-config)
-(setq sp-base-key-bindings 'paredit)
-(setq sp-autoskip-closing-pair 'always)
-(setq sp-hybrid-kill-entire-symbol nil)
+(try-require "smartparens-config")
+(defvar sp-base-key-bindings 'paredit)
+(defvar sp-autoskip-closing-pair 'always)
+(defvar sp-hybrid-kill-entire-symbol nil)
 (sp-use-paredit-bindings)
 
 (show-smartparens-global-mode +1)
@@ -86,9 +87,9 @@
 ;; (smartparens-strict-mode 1)
 
 ;; Package: projejctile
-(require 'projectile)
+(try-require "projectile")
 (projectile-global-mode)
-(setq projectile-enable-caching t)
+(defvar projectile-enable-caching t)
 
 ;; Package zygospore
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
