@@ -8,11 +8,14 @@
 ;;; Code:
 
 ;; Define path to modules
-(defvar modules-path)
+(defvar modules-path nil
+  "Defines path to modules directory.")
 (setq modules-path (concat user-emacs-directory
         (convert-standard-filename "modules/")))
 
 ;; Add modules-path to load-path
+
+
 (let ((default-directory modules-path))
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
@@ -21,7 +24,9 @@
 
 
 ;; Loading package manager
-(load-library "package-manager")
+(load "package-manager")
+
+(package-manager-install)
 
 (provide 'emacs)
 ;;; .emacs ends here
