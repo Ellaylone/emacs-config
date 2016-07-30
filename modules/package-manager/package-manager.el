@@ -41,7 +41,6 @@ Uses lift of packages stored in variable package-manager-list"
     (dolist (p package-manager-list)
       (when (not (package-installed-p p))
         (package-install p))))
-  (message ("Packages installed"))
   )
 
 (provide 'package-manager)
