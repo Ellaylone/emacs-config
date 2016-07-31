@@ -6,8 +6,6 @@
 ;; Better defaults for Emacs
 
 ;;; Code:
-
-;;; better defaults
 (setq package-manager-list
   '(
     magit
@@ -31,6 +29,7 @@
 
 (package-manager-install)
 
+;;; better defaults
 (progn
   (ido-mode t)
   (setq ido-enable-flex-matching t)
