@@ -13,17 +13,17 @@
 ;; removes square in the middle of screen
 (if (eq system-type 'darwin)
     (setq ring-bell-function 'ignore)
-)
+  )
 
 ;; Variables for path to modules & elpa
 (defvar modules-path nil
   "Defines path to modules directory.")
 (setq modules-path (concat user-emacs-directory
-        (convert-standard-filename "modules")))
+                           (convert-standard-filename "modules")))
 (defvar elpa-path nil
   "Defines path to elpa directory.")
 (setq elpa-path (concat user-emacs-directory
-        (convert-standard-filename "elpa")))
+                        (convert-standard-filename "elpa")))
 
 ;; Add elpa-path & modules-path to load-path
 (let ((default-directory elpa-path))
@@ -60,7 +60,6 @@ FEATURE - feature to require"
 ;; Loading package manager
 (load "package-manager")
 (load "better-defaults")
-
 
 (setq package-manager-list
       'missing-packages-list)

@@ -8,26 +8,25 @@
 ;;; Code:
 
 ;;; better defaults
-(setq package-manager-list
-      '(
-        magit
-        anzu
-        auto-complete
-        autopair
-        flycheck
-        yasnippet
-        ace-window
-        ws-butler
-        smartparens
-        projectile
-        undo-tree
-        clean-aindent-mode
-        volatile-highlights
-        iedit
-        comment-dwim-2
-        duplicate-thing
-        )
-      )
+(defvar package-manager-list
+  '(
+    magit
+    anzu
+    auto-complete
+    autopair
+    flycheck
+    yasnippet
+    ace-window
+    ws-butler
+    smartparens
+    projectile
+    undo-tree
+    clean-aindent-mode
+    volatile-highlights
+    iedit
+    comment-dwim-2
+    duplicate-thing
+    ))
 
 (package-manager-install)
 

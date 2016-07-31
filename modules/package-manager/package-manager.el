@@ -9,15 +9,14 @@
 
 ;;; Code:
 ;; list repos
-(require 'cl-lib)
+(require 'cl)
 (message "Init package-manager.el")
 (require 'package)
 (package-initialize)
-
-(defvar package-archives '(("elpa" . "http://tromey.com/elpa/")
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("elpa" . "http://tromey.com/elpa/")
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/"))
-  "List of package archives.")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 
 ;; Define package-manager-list
@@ -29,16 +28,12 @@
   "Install packages from package-manager-list.
 Uses lift of packages stored in variable package-manager-list"
   (interactive)
-  (defun package-manager-list-installed-p ()
-    "Loop through package-manager-list and look for not installed packages."
-    (cl-loop for p in package-manager-list
-          when (not (package-installed-p p)) do (cl-return nil)
-          finally (cl-return t)))
-
+  (defun my-packages-installed-p ()
+    (loop for p in package-manager-list
+          when (not (package-installed-p p)) do (return nil)
+          finally (return t )))
   (unless (package-manager-list-installed-p)
-    (message "Check for new packages: init")
     (package-refresh-contents)
-    (message "%s" "Check for new packages: done")
     (dolist (p package-manager-list)
       (when (not (package-installed-p p))
         (package-install p))))
