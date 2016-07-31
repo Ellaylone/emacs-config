@@ -61,6 +61,11 @@ FEATURE - feature to require"
 (load "package-manager")
 (load "better-defaults")
 
+(defun config-frontend ()
+  (interactive)
+  (load "frontend")
+  )
+
 (setq package-manager-list
       'missing-packages-list)
 
