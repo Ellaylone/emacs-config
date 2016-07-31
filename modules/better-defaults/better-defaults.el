@@ -21,11 +21,12 @@
     smartparens
     projectile
     undo-tree
-;;    clean-aindent-mode
+    clean-aindent-mode
     volatile-highlights
     iedit
     comment-dwim-2
     duplicate-thing
+    editorconfig
     ))
 
 (package-manager-install)
@@ -63,6 +64,10 @@
                                                  "backups")))))
 ;;; better defaults
 
+;; Package: editorconfig
+(try-require "editorconfig")
+(editorconfig-mode 1)
+
 ;; Package: anzu
 (global-anzu-mode +1)
 (global-set-key [remap query-replace] 'anzu-query-replace)
@@ -82,7 +87,7 @@
 
 ;; Package: clean-aindent-mode
 ;; (try-require "clean-aindent-mode")
-;; (add-hook 'prog-mode-hook 'clean-aindent-mode)
+(add-hook 'prog-mode-hook 'clean-aindent-mode)
 
 ;; Package: globally enable linum-mode
 (global-linum-mode t)
