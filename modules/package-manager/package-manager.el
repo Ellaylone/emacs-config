@@ -28,7 +28,7 @@
   "Install packages from package-manager-list.
 Uses lift of packages stored in variable package-manager-list"
   (interactive)
-  (defun my-packages-installed-p ()
+  (defun package-manager-list-installed-p ()
     (loop for p in package-manager-list
           when (not (package-installed-p p)) do (return nil)
           finally (return t )))

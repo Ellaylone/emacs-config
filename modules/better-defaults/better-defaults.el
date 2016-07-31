@@ -8,7 +8,7 @@
 ;;; Code:
 
 ;;; better defaults
-(defvar package-manager-list
+(setq package-manager-list
   '(
     magit
     anzu
@@ -21,7 +21,7 @@
     smartparens
     projectile
     undo-tree
-    clean-aindent-mode
+;;    clean-aindent-mode
     volatile-highlights
     iedit
     comment-dwim-2
@@ -81,8 +81,8 @@
 (global-set-key (kbd "M-p") 'ace-window)
 
 ;; Package: clean-aindent-mode
-(try-require "clean-aindent-mode")
-(add-hook 'prog-mode-hook 'clean-aindent-mode)
+;; (try-require "clean-aindent-mode")
+;; (add-hook 'prog-mode-hook 'clean-aindent-mode)
 
 ;; Package: globally enable linum-mode
 (global-linum-mode t)
