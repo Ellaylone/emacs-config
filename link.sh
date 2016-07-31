@@ -1,10 +1,11 @@
 #!/bin/bash
+set -e
 
-home={$PWD}
-home_emacs="$home/.emacs"
-home_emacs_modules="$home/modules/"
-emacs_path="/Users/user/.emacs"
-emacs_dir_path="/Users/user/.emacs.d/"
+current=${PWD}
+current_emacs="$current/.emacs"
+current_emacs_modules="$current/modules/"
+emacs_path="$HOME/.emacs"
+emacs_dir_path="$HOME/.emacs.d/"
 emacs_modules_path=""
 emacs_elpa_path=""
 
@@ -96,17 +97,19 @@ backupEmacs () {
 
 backupEmacsModules () {
     echo "Backup emacs modules..."
-    mv -r $emacs_modules_path "$emacs_modules_path.bu"
+    mv $emacs_modules_path "$emacs_modules_path.bu"
 }
 
 linkEmacs () {
+    cd ${emacs_path//.emacs/}
     echo "Linking emacs..."
-    ln -s $home_emacs $emacs_path
+    ln -s $current_emacs ".emacs"
 }
 
 linkEmacsModules () {
+    cd $emacs_dir_path
     echo "Linking emacs modules..."
-    ln -s $home_emacs_modules $emacs_modules_path
+    ln -s $current_emacs_modules "modules"
 }
 
 createElpa () {
@@ -117,8 +120,10 @@ createElpa () {
 userInput () {
     askPath "Enter path to .emacs" $emacs_path
     emacs_path=$(checkPathInput $emacs_path)
+    emacs_path=${emacs_path/#~/$HOME}
     askPath "Enter path to user-emacs-directory" $emacs_dir_path
     emacs_dir_path=$(checkPathInput $emacs_dir_path)
+    emacs_dir_path=${emacs_dir_path/#~/$HOME}
     emacs_modules_path="$emacs_dir_path/modules"
     emacs_modules_path=${emacs_modules_path//\/\//\/}
     emacs_elpa_path="$emacs_dir_path/elpa"
@@ -141,7 +146,7 @@ checkFiles () {
 
     if checkDirectoryExists $emacs_elpa_path
     then
-        echo "Elpa already exists."
+        echo "Elpa already exists. Skipping..."
     else
         createElpa
     fi
