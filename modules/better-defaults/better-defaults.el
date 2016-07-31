@@ -7,25 +7,29 @@
 
 ;;; Code:
 (setq package-manager-list
-  '(
-    magit
-    anzu
-    auto-complete
-    autopair
-    flycheck
-    yasnippet
-    ace-window
-    ws-butler
-    smartparens
-    projectile
-    undo-tree
-    clean-aindent-mode
-    volatile-highlights
-    iedit
-    comment-dwim-2
-    duplicate-thing
-    editorconfig
-    ))
+      '(
+        magit
+        anzu
+        auto-complete
+        autopair
+        flycheck
+        yasnippet
+        ace-window
+        ws-butler
+        smartparens
+        projectile
+        undo-tree
+        clean-aindent-mode
+        aggressive-indent
+        volatile-highlights
+        iedit
+        comment-dwim-2
+        duplicate-thing
+        editorconfig
+        zygospore
+        helm
+        helm-swoop
+        ))
 
 (package-manager-install)
 
@@ -84,9 +88,13 @@
 (try-require "ace-window")
 (global-set-key (kbd "M-p") 'ace-window)
 
-;; Package: clean-aindent-mode
-;; (try-require "clean-aindent-mode")
+;; Package: clean-aindent
+(try-require "clean-aindent")
 (add-hook 'prog-mode-hook 'clean-aindent-mode)
+
+;; Package: aggressive-indent
+(try-require "aggressive-indent")
+(global-aggressive-indent-mode 1)
 
 ;; Package: globally enable linum-mode
 (global-linum-mode t)
@@ -139,6 +147,27 @@
 
 ;; Package zygospore
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
+
+;; Package helm
+(try-require "helm")
+(try-require "helm-swoop")
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
+(define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+(define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
+(define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
+(define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
+(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
+(setq helm-multi-swoop-edit-save t) ;; ?
+(setq helm-swoop-split-with-multiple-windows t)
+(setq helm-swoop-split-direction 'split-window-horizontally)
+(setq helm-swoop-speed-or-color nil)
+(setq helm-swoop-move-to-line-cycle t)
+(setq helm-swoop-use-line-number-face t)
+(setq helm-swoop-use-fuzzy-match t)
 
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
