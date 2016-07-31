@@ -9,6 +9,7 @@
 
 ;;; Code:
 ;; list repos
+(require 'cl-lib)
 (message "Init package-manager.el")
 (require 'package)
 (package-initialize)
@@ -30,9 +31,9 @@ Uses lift of packages stored in variable package-manager-list"
   (interactive)
   (defun package-manager-list-installed-p ()
     "Loop through package-manager-list and look for not installed packages."
-    (loop for p in package-manager-list
-          when (not (package-installed-p p)) do (return nil)
-          finally (return t)))
+    (cl-loop for p in package-manager-list
+          when (not (package-installed-p p)) do (cl-return nil)
+          finally (cl-return t)))
 
   (unless (package-manager-list-installed-p)
     (message "Check for new packages: init")
