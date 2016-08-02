@@ -20,7 +20,6 @@
         projectile
         undo-tree
         clean-aindent-mode
-        aggressive-indent
         volatile-highlights
         iedit
         comment-dwim-2
@@ -29,6 +28,7 @@
         zygospore
         helm
         helm-swoop
+        project-explorer
         ))
 
 (package-manager-install)
@@ -88,13 +88,9 @@
 (try-require "ace-window")
 (global-set-key (kbd "M-p") 'ace-window)
 
-;; Package: clean-aindent
-(try-require "clean-aindent")
+;; Package: clean-aindent-mode
+(try-require "clean-aindent-mode")
 (add-hook 'prog-mode-hook 'clean-aindent-mode)
-
-;; Package: aggressive-indent
-(try-require "aggressive-indent")
-(global-aggressive-indent-mode 1)
 
 ;; Package: globally enable linum-mode
 (global-linum-mode t)
@@ -168,6 +164,12 @@
 (setq helm-swoop-move-to-line-cycle t)
 (setq helm-swoop-use-line-number-face t)
 (setq helm-swoop-use-fuzzy-match t)
+
+;; Package project-explorer
+(try-require "project-explorer")
+
+;; Call whitespace-cleanup before save
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
