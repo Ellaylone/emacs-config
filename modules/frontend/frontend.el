@@ -12,7 +12,8 @@
         web-mode
         pug-mode
         js3-mode
-        js3-refactor
+        ;; js2-mode
+        ;; js2-refactor
         web-beautify
         skewer-mode
         impatient-mode
@@ -34,10 +35,10 @@
 ;; Package: js3-mode
 (try-require "js3-mode")
 
-;; Package: js3-refactor
-(try-require "js3-refactor")
-(add-hook 'js3-mode-hook #'js3-refactor-mode)
-(js3r-add-keybindings-with-prefix "C-c C-r")
+;; ;; Package: js3-refactor
+;; (try-require "js3-refactor")
+;; (add-hook 'js3-mode-hook #'js3-refactor-mode)
+;; (js3r-add-keybindings-with-prefix "C-c C-r")
 
 ;; Package: web-beautify
 (try-require "web-beautify")
@@ -100,11 +101,11 @@
 (add-hook 'css-mode-hook  'emmet-mode)
 
 ;; Package: company-mode
-(add-hook 'after-init-hook 'global-company-mode)
+;; (add-hook 'after-init-hook 'global-company-mode)
 ;; (add-hook 'js3-mode-hook 'company-mode)
 
 ;; Package: company-tern
-(add-to-list 'company-backends 'company-tern)
+;; (add-to-list 'company-backends 'company-tern)
 
 (provide 'frontend)
 ;;; frontend ends here
