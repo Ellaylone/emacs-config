@@ -29,6 +29,7 @@
         helm
         helm-swoop
         project-explorer
+        browse-kill-ring
         ))
 
 (package-manager-install)
@@ -170,6 +171,10 @@
 
 ;; Call whitespace-cleanup before save
 (add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; Package browse-kill-ring
+(try-require "browse-kill-ring")
+(global-set-key (kbd "C-y") 'browse-kill-ring)
 
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
