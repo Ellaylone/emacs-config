@@ -30,6 +30,7 @@
         helm-swoop
         project-explorer
         browse-kill-ring
+        drag-stuff
         ))
 
 (package-manager-install)
@@ -168,6 +169,10 @@
 
 ;; Package project-explorer
 (try-require "project-explorer")
+
+;; Package drag-stuff
+(try-require "drag-stuff")
+(drag-stuff-mode t)
 
 ;; Call whitespace-cleanup before save
 (add-hook 'before-save-hook 'whitespace-cleanup)
