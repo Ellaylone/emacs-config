@@ -31,6 +31,7 @@
         project-explorer
         browse-kill-ring
         drag-stuff
+        god-mode
         ))
 
 (package-manager-install)
@@ -180,6 +181,12 @@
 ;; Package browse-kill-ring
 (try-require "browse-kill-ring")
 (global-set-key (kbd "C-y") 'browse-kill-ring)
+
+;; Package god-mode
+(try-require "god-mode")
+(global-set-key (kbd "<escape>") 'god-mode-all)
+(setq god-exempt-major-modes nil)
+(setq god-exempt-predicates nil)
 
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
