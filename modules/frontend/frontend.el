@@ -12,8 +12,6 @@
         web-mode
         pug-mode
         js3-mode
-        ;; js2-mode
-        ;; js2-refactor
         web-beautify
         skewer-mode
         impatient-mode
@@ -21,6 +19,8 @@
         emmet-mode
         company
         company-tern
+        sws-mode
+        stylus-mode
         ))
 
 (package-manager-install)
@@ -28,17 +28,24 @@
 ;; Package: web-mode
 (try-require "web-mode")
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+
+(add-to-list 'editorconfig-indentation-alist
+             '(web-mode (web-mode-indent-style . (lambda (size) 2))
+                       web-mode-markup-indent-offset
+                       web-mode-css-indent-offset
+                       web-mode-code-indent-offset
+                       web-mode-block-padding
+                       web-mode-attr-indent-offset
+                       web-mode-script-padding
+                       web-mode-style-padding))
 
 ;; Package: pug-mode
 (try-require "pug-mode")
 
 ;; Package: js3-mode
 (try-require "js3-mode")
-
-;; ;; Package: js3-refactor
-;; (try-require "js3-refactor")
-;; (add-hook 'js3-mode-hook #'js3-refactor-mode)
-;; (js3r-add-keybindings-with-prefix "C-c C-r")
 
 ;; Package: web-beautify
 (try-require "web-beautify")
@@ -79,13 +86,6 @@
 (add-hook 'html-mode-hook 'impatient-mode)
 (add-hook 'web-mode-hook 'impatient-mode)
 
-;; Package: javascript-eslint
-;; (setq-default flycheck-disabled-checkers
-;;               (append flycheck-disabled-checkers
-;;                       '(javascript-jshint)))
-;; (flycheck-add-mode 'javascript-eslint 'web-mode)
-;; (flycheck-add-mode 'javascript-eslint 'js3-mode)
-
 (defadvice web-mode-highlight-part (around tweak-jsx activate)
   (if (equal web-mode-content-type "jsx")
       (let ((web-mode-enable-part-face nil))
@@ -101,8 +101,15 @@
 (add-hook 'css-mode-hook  'emmet-mode)
 
 ;; Package: company-mode
-;; (add-hook 'after-init-hook 'global-company-mode)
-;; (add-hook 'js3-mode-hook 'company-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'js3-mode-hook 'company-mode)
+
+;; Package: sws-mode ;; required for stylus-mode
+(try-require "sws-mode")
+
+;; Package: stylus-mode
+(try-require "stylus-mode")
+(add-to-list 'auto-mode-alist '("\\.styl\\'" . stylus-mode))
 
 ;; Package: company-tern
 ;; (add-to-list 'company-backends 'company-tern)

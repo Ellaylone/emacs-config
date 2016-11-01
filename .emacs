@@ -64,6 +64,17 @@ FEATURE - feature to require"
 (defun config-frontend ()
   (interactive)
   (load "frontend")
+  (load "react")
+  )
+
+(defun config-frontend-simple ()
+  (interactive)
+  (load "frontend")
+  )
+
+(defun config-react ()
+  (interactive)
+  (load "react")
   )
 
 (setq package-manager-list
@@ -73,9 +84,4 @@ FEATURE - feature to require"
     (message "To install missing packages run package-manager-install\nMissing: %s" missing-packages-list))
 (provide 'emacs)
 ;;; .emacs ends here
-(custom-set-variables
- '(custom-safe-themes
-   (quote
-    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))))
-(custom-set-faces
- )
+(put 'narrow-to-region 'disabled nil)
