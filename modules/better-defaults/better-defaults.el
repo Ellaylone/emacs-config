@@ -31,6 +31,7 @@
         project-explorer
         browse-kill-ring
         drag-stuff
+        markdown-mode
         god-mode
         ))
 
@@ -181,6 +182,9 @@
 ;; Package browse-kill-ring
 (try-require "browse-kill-ring")
 (global-set-key (kbd "C-y") 'browse-kill-ring)
+
+;; Package markdown-mode
+(try-require "markdown-mode")
 
 ;; Package god-mode
 (try-require "god-mode")
