@@ -4,9 +4,11 @@ set -e
 current=${PWD}
 current_emacs="$current/.emacs"
 current_emacs_modules="$current/modules/"
+current_emacs_snippets="$current/snippets/"
 emacs_path="$HOME/.emacs"
 emacs_dir_path="$HOME/.emacs.d/"
 emacs_modules_path=""
+emacs_snippets_path=""
 emacs_elpa_path=""
 
 # Ask for path
@@ -63,6 +65,7 @@ ask() {
 checkIfCorrect () {
     echo $emacs_path
     echo $emacs_modules_path
+    echo $emacs_snippets_path
     echo $emacs_elpa_path
     confirm_value= ask "Is this correct?" Y
     if [[ $confirm_value == 1 ]]; then
@@ -100,6 +103,11 @@ backupEmacsModules () {
     mv $emacs_modules_path "$emacs_modules_path.bu"
 }
 
+backupEmacsYaSnippets () {
+    echo "Backup emacs YaSnippets..."
+    mv $emacs_snippets_path "$emacs_snippets_path.bu"
+}
+
 linkEmacs () {
     cd ${emacs_path//.emacs/}
     echo "Linking emacs..."
@@ -110,6 +118,12 @@ linkEmacsModules () {
     cd $emacs_dir_path
     echo "Linking emacs modules..."
     ln -s $current_emacs_modules "modules"
+}
+
+linkEmacsYaSnippets () {
+    cd $emacs_dir_path
+    echo "Linking YaSnippets..."
+    ln -s $current_emacs_snippets "snippets"
 }
 
 createElpa () {
@@ -126,6 +140,8 @@ userInput () {
     emacs_dir_path=${emacs_dir_path/#~/$HOME}
     emacs_modules_path="$emacs_dir_path/modules"
     emacs_modules_path=${emacs_modules_path//\/\//\/}
+    emacs_snippets_path="$emacs_dir_path/snippets"
+    emacs_snippets_path=${emacs_snippets_path//\/\//\/}
     emacs_elpa_path="$emacs_dir_path/elpa"
     emacs_elpa_path=${emacs_elpa_path//\/\//\/}
     checkIfCorrect
@@ -143,6 +159,12 @@ checkFiles () {
         backupEmacsModules
     fi
     linkEmacsModules
+
+    if checkDirectoryExists $emacs_snippets_path
+    then
+        backupEmacsYaSnippets
+    fi
+    linkEmacsYaSnippets
 
     if checkDirectoryExists $emacs_elpa_path
     then
