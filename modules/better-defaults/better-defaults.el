@@ -33,6 +33,7 @@
         drag-stuff
         markdown-mode
         god-mode
+        hydra
         ))
 
 (package-manager-install)
@@ -191,6 +192,9 @@
 (global-set-key (kbd "<escape>") 'god-mode-all)
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
+
+;; Package hydra
+(try-require "hydra")
 
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
