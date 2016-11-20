@@ -33,6 +33,11 @@
         drag-stuff
         markdown-mode
         god-mode
+        ace-popup-menu
+        hydra
+        goto-last-change
+        ace-jump-mode
+        workgroups2
         ))
 
 (package-manager-install)
@@ -191,6 +196,25 @@
 (global-set-key (kbd "<escape>") 'god-mode-all)
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
+
+;; Package hydra
+(try-require "hydra")
+
+;; Package ace-popup-menu
+(try-require "ace-popup-menu")
+(ace-popup-menu-mode 1)
+
+;; Package goto-last-change
+(try-require "goto-last-change")
+(global-set-key (kbd "C-x C-/") 'goto-last-change)
+
+;; Package ace-jump-mode
+(try-require "ace-jump-mode")
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
+;; Package workgroups2
+(try-require "workgroups2")
+(workgroups-mode 1)
 
 (provide 'better-defaults)
 ;;; better-defaults.el ends here
