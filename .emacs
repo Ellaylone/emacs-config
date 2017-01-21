@@ -7,6 +7,13 @@
 
 ;;; Code:
 ;; Define path to modules
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (message "Emacs init")
 
 ;; Remove bell for mac
@@ -77,6 +84,11 @@ FEATURE - feature to require"
   (load "react")
   )
 
+(defun config-jde ()
+  (interactive)
+  (load "jde")
+  )
+
 (setq package-manager-list
       'missing-packages-list)
 
@@ -84,4 +96,3 @@ FEATURE - feature to require"
     (message "To install missing packages run package-manager-install\nMissing: %s" missing-packages-list))
 (provide 'emacs)
 ;;; .emacs ends here
-(put 'narrow-to-region 'disabled nil)
